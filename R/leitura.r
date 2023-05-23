@@ -30,7 +30,8 @@ le_nwlistop <- function(arq) {
         tab <- as.data.table(tab)
         tab[, (names(tab)[-4]) := lapply(.SD, as.numeric), .SDcols = -4]
         colnames(tab) <- titulos
-        tab[, QDEF := (VTUR + VERT) / 730.5 / 3600 * 1e6]
+
+        return(tab)
     }, SIMPLIFY = FALSE)
 
     out <- rbindlist(tabelas)

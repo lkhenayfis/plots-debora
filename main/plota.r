@@ -14,6 +14,12 @@ dados[, `NOME DA USINA` := factor(`NOME DA USINA`, ordem[[2]], ordered = TRUE)]
 
 # ------------------------------------------------------------------------------
 
+# como criar nova coluna
+# dados[, NOME_COL_NOVA := EXPRESSAO]
+dados[, QDEF := (VTUR + VERT) / 730.5 / 3600 * 1e6]
+
+# ------------------------------------------------------------------------------
+
 if(!dir.exists("out")) dir.create("out")
 
 gg <- ggplot(dados[IMPRIME == 1, .("QDEF" = sum(QDEF)), by = c("IPER", "IUSI", "NOME DA USINA")]) +
