@@ -1,4 +1,4 @@
-library(ggplot2)
+suppressWarnings(library(ggplot2))
 
 source("R/leitura.r")
 
@@ -6,7 +6,7 @@ arq <- "data/nwlistop_CR_HIB12.rel"
 nome <- strsplit(arq, "/")[[1]][2]
 nome <- sub(".rel", "", nome)
 
-cat("Lendo arquivo nwlistop... ")
+cat("\nLendo arquivo nwlistop... ")
 
 ordem <- fread("data/OrdemImpressao.csv")
 dados <- le_nwlistop(arq)
