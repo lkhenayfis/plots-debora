@@ -38,7 +38,7 @@ if(!dir.exists("out")) dir.create("out")
 gg <- plota_series(QDEF)
 ggsave(file.path("out", paste0(nome, "_QDEF", ".jpeg")), gg, width = 16, height = 9)
 
-gg <- plota_series(`VARMF%`)
+gg <- plota_series(`VARMF%`, eixo_y_livre = FALSE)
 ggsave(file.path("out", paste0(nome, "_VARMFP", ".jpeg")), gg, width = 16, height = 9)
 
 gg <- plota_series(VIOLTOTAL)
