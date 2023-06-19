@@ -1,6 +1,6 @@
-suppressWarnings(library(ggplot2))
 
 source("R/leitura.r")
+source("R/visualizacao.r")
 
 arq <- "data/nwlistop_CR_HIB12.rel"
 nome <- strsplit(arq, "/")[[1]][2]
@@ -35,14 +35,13 @@ cat("Gerando plots... ")
 
 if(!dir.exists("out")) dir.create("out")
 
-gg <- ggplot(dados[IMPRIME == 1, .("QDEF" = sum(QDEF)), by = c("IPER", "IUSI", "NOME DA USINA")]) +
-    geom_line(aes(IPER, QDEF)) + facet_wrap(~ `NOME DA USINA`, scales = "free_y", dir = "v") +
-    theme_bw()
+gg <- plota_series(QDEF)
 ggsave(file.path("out", paste0(nome, "_QDEF", ".jpeg")), gg, width = 16, height = 9)
 
-gg <- ggplot(dados[(IMPRIME == 1) & (IPAT == 1)]) +
-    geom_line(aes(x = IPER, y = `VARMF%`)) + facet_wrap(~`NOME DA USINA`, dir = "v") +
-    theme_bw()
+gg <- plota_series(`VARMF%`)
 ggsave(file.path("out", paste0(nome, "_VARMFP", ".jpeg")), gg, width = 16, height = 9)
+
+gg <- plota_series(VIOLTOTAL)
+ggsave(file.path("out", paste0(nome, "_VIOLTOTAL", ".jpeg")), gg, width = 16, height = 9)
 
 cat("Ok!\n")
