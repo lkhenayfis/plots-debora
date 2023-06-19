@@ -25,6 +25,10 @@ cat("Aplicando modificacoes de dado... \n")
 dados[, QDEF := (VTUR + VERT) / 730.5 / 3600 * 1e6]
 cat("\t QDEF -- Ok!\n")
 
+# coluna violacao total
+dados[, VIOLTOTAL := DEPMIN + DTBMIN]
+cat("\t VIOLTOTAL -- Ok!\n")
+
 # ------------------------------------------------------------------------------
 
 cat("Gerando plots... ")
